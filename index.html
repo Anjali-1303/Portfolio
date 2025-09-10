@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anjali Kasaragod | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a036c6dd1b.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --primary:#111827;
+  --secondary:#f9fafb;
+  --accent:#f97316;
+  --text:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Roboto",sans-serif;}
+body{background:var(--primary);color:var(--text);}
+h1,h2,h3{font-family:"Montserrat",sans-serif;}
+section{padding:100px 10%;display:none;transition:opacity 0.8s ease;}
+section.active{display:block;}
+.section h2{text-align:center;margin-bottom:50px;color:var(--accent);font-size:2.5rem;letter-spacing:1px;position:relative;}
+.section h2::after{content:"";display:block;width:60px;height:3px;background:var(--accent);margin:10px auto 0;border-radius:2px;}
+
+/* Navbar */
+nav{position:fixed;top:0;width:100%;background:rgba(17,24,39,0.95);padding:15px 0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.3);}
+nav ul{list-style:none;display:flex;justify-content:center;gap:25px;flex-wrap:wrap;}
+nav a{text-decoration:none;color:var(--secondary);font-weight:500;transition:color .3s;}
+nav a.active, nav a:hover{color:var(--accent);}
+
+/* Home */
+.home-content{display:flex;flex-direction:column;align-items:center;gap:25px;text-align:center;margin-top:50px;}
+.profile-photo{width:180px;height:180px;border-radius:50%;overflow:hidden;border:4px solid var(--accent);}
+.profile-photo img{width:100%;height:100%;object-fit:cover;}
+.home-text h1{font-size:2.8rem;color:var(--secondary);}
+.home-text h2{font-size:1.4rem;color:var(--accent);margin-top:10px;font-weight:500;}
+
+/* About */
+.about-content-wrapper{display:flex;align-items:center;gap:40px;max-width:1000px;margin:auto;}
+.about-photo img{width:250px;border-radius:15px;}
+.about-text{flex:2;color:#d1d5db;font-size:1.1rem;line-height:1.6;}
+
+/* Resume */
+.skills-container{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;}
+.skills-box{flex:1;min-width:300px;}
+.skills-box h3{text-align:center;margin-bottom:20px;color:var(--accent);}
+.skill-card{margin-bottom:18px;}
+.skill-card span{display:block;margin-bottom:5px;font-weight:500;}
+.skill-bar{background:#374151;border-radius:6px;overflow:hidden;height:8px;}
+.skill-level{height:8px;background:var(--accent);width:0;transition:width 1s ease-in-out;}
+.non-tech{display:flex;flex-wrap:wrap;gap:12px;}
+.non-tech .skill-card{background:#1f2937;padding:10px 15px;border-radius:8px;text-align:center;}
+
+/* Certifications */
+.cert-list{list-style:none;max-width:700px;margin:auto;}
+.cert-list li{padding:12px 0;font-size:1.05rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #374151;}
+.cert-list li i{color:var(--accent);}
+
+/* Education */
+.edu-timeline{max-width:800px;margin:auto;display:flex;flex-direction:column;gap:25px;}
+.edu-card{background:#1f2937;padding:20px;border-radius:10px;}
+
+/* Achievements */
+.awards{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;}
+.award-card{background:#1f2937;padding:25px;border-radius:12px;text-align:center;width:250px;}
+.award-icon{font-size:2rem;color:var(--accent);display:block;margin-bottom:10px;}
+
+/* Projects */
+.project-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+.project-card{width:260px;height:320px;perspective:1000px;position:relative;}
+.project-front,.project-back{width:100%;height:100%;border-radius:15px;backface-visibility:hidden;position:absolute;transition:transform .8s;}
+.project-front{background:#1f2937;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.project-front img{width:80%;border-radius:10px;margin-bottom:15px;}
+.project-front h3{color:var(--secondary);}
+.project-back{background:#111827;padding:20px;text-align:center;transform:rotateY(180deg);}
+.project-card:hover .project-front{transform:rotateY(180deg);}
+.project-card:hover .project-back{transform:rotateY(360deg);}
+
+/* Contact */
+.contact-info{text-align:center;}
+.contact-info a{color:var(--accent);text-decoration:none;}
+.social-buttons{margin-top:20px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+.btn{padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:500;color:#fff;display:flex;align-items:center;gap:8px;}
+.instagram{background:#e1306c;}
+.youtube{background:#ff0000;}
+.linkedin{background:#0077b5;}
+
+/* Footer */
+footer{background:#0f172a;padding:40px 20px 20px;text-align:center;margin-top:40px;border-top:1px solid #1f2937;}
+.footer-social{display:flex;justify-content:center;gap:25px;margin-bottom:15px;}
+.footer-social a{color:var(--secondary);font-size:1.5rem;transition:transform .3s;}
+.footer-social a:hover{color:var(--accent);transform:translateY(-5px);}
+.footer-text{font-size:0.9rem;color:#9ca3af;}
+</style>
+</head>
+<body>
+
+<nav>
+<ul>
+<li><a href="#home" class="active">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#resume">Resume</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#achievements">Achievements</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- Home -->
+<section id="home" class="active">
+<div class="home-content">
+<div class="profile-photo"><img src="anjali.jpg" alt="Anjali Kasaragod"/></div>
+<div class="home-text">
+<h1>Anjali Kasaragod</h1>
+<h2>Musician | Innovator | Designer</h2>
+</div>
+</div>
+</section>
+
+<!-- About -->
+<section id="about">
+<h2>About Me</h2>
+<div class="about-content-wrapper">
+<div class="about-photo"><img src="anjali.jpg" alt="Anjali Kasaragod"/></div>
+<div class="about-text">
+<p>I am Anjali Kasaragod, a passionate musician and creative innovator with a love for technology and design. My journey is a blend of art and engineering, where I thrive on building unique projects and delivering impactful performances.</p>
+</div>
+</div>
+</section>
+
+<!-- Resume -->
+<section id="resume">
+<h2>Resume & Skills</h2>
+<div class="skills-container">
+<div class="skills-box">
+<h3>Technical Skills</h3>
+<div class="skill-card"><span>C</span><div class="skill-bar"><div class="skill-level" data-skill="90"></div></div></div>
+<div class="skill-card"><span>HTML</span><div class="skill-bar"><div class="skill-level" data-skill="95"></div></div></div>
+<div class="skill-card"><span>CSS</span><div class="skill-bar"><div class="skill-level" data-skill="92"></div></div></div>
+<div class="skill-card"><span>Java</span><div class="skill-bar"><div class="skill-level" data-skill="85"></div></div></div>
+<div class="skill-card"><span>C++</span><div class="skill-bar"><div class="skill-level" data-skill="80"></div></div></div>
+</div>
+<div class="skills-box">
+<h3>Non-Technical Skills</h3>
+<div class="skills non-tech">
+<div class="skill-card"><span>Communication</span></div>
+<div class="skill-card"><span>Leadership</span></div>
+<div class="skill-card"><span>Creativity</span></div>
+<div class="skill-card"><span>Poster & Logo Design</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+<h2>Certifications</h2>
+<ul class="cert-list">
+<li><i class="fas fa-certificate"></i> Certified in Adobe Photoshop</li>
+<li><i class="fas fa-certificate"></i> Completed Internship in Web Development</li>
+<li><i class="fas fa-certificate"></i> UI/UX Design Workshop</li>
+</ul>
+</section>
+
+<!-- Education -->
+<section id="education">
+<h2>Education</h2>
+<div class="edu-timeline">
+<div class="edu-card"><h3>Bachelor of Engineering</h3><p>VCET College | 2021 - 2027</p><p>CGPA: 8.9 / 10</p></div>
+<div class="edu-card"><h3>Pre-University</h3><p>VPUC College | 2019 - 2021</p><p>Percentage: 88%</p></div>
+<div class="edu-card"><h3>Schooling</h3><p>Vittal Jaycees English Medium | Until 2019</p><p>Percentage: 83%</p></div>
+</div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements">
+<h2>Achievements</h2>
+<div class="awards">
+<div class="award-card"><span class="award-icon"><i class="fas fa-trophy"></i></span><h3>Indian Excellency Award</h3></div>
+<div class="award-card"><span class="award-icon"><i class="fas fa-award"></i></span><h3>Kannada Mahila Ratna Award 2022</h3></div>
+<div class="award-card"><span class="award-icon"><i class="fas fa-tv"></i></span><h3>Participation in Shankara TV Channel</h3></div>
+<div class="award-card"><span class="award-icon"><i class="fas fa-microphone"></i></span><h3>Performed percussion & singing on multiple stages</h3></div>
+</div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+<h2>Projects</h2>
+<div class="project-cards">
+<div class="project-card">
+<div class="project-front"><img src="clickkart.jpg" alt="ClickKart"/><h3>ClickKart</h3></div>
+<div class="project-back"><p>E-commerce Website: Modern, responsive platform with user account and checkout.</p></div>
+</div>
+<div class="project-card">
+<div class="project-front"><img src="cookmate logo.png" alt="AI Cooking Assistant"/><h3>AI Cooking Assistant</h3></div>
+<div class="project-back"><p>AI-powered assistant providing personalized recipe suggestions (currently working).</p></div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<h2>Contact</h2>
+<div class="contact-info">
+<p><strong>Email:</strong> <a href="mailto:anjalikasaragod513@gmail.com">anjalikasaragod513@gmail.com</a></p>
+<p><strong>Phone:</strong> +91-6282695997</p>
+<div class="social-buttons">
+<a href="https://www.instagram.com/anjalivkasaragod_official/?hl=en" target="_blank" class="btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="https://www.youtube.com/@AnjaliKasaragodanju" target="_blank" class="btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
+<a href="https://in.linkedin.com/in/anjalikasaragod" target="_blank" class="btn linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-social">
+<a href="https://www.instagram.com/anjalivkasaragod_official/?hl=en"><i class="fab fa-instagram"></i></a>
+<a href="https://www.youtube.com/@AnjaliKasaragodanju"><i class="fab fa-youtube"></i></a>
+<a href="https://in.linkedin.com/in/anjalikasaragod"><i class="fab fa-linkedin"></i></a>
+</div>
+<div class="footer-text">&copy; 2025 Anjali Kasaragod. All Rights Reserved.</div>
+</footer>
+
+<script>
+// Navbar single-page toggle
+const links = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section');
+links.forEach(link=>{
+link.addEventListener('click',e=>{
+e.preventDefault();
+links.forEach(l=>l.classList.remove('active'));
+link.classList.add('active');
+const target = link.getAttribute('href').substring(1);
+sections.forEach(sec=>sec.classList.remove('active'));
+document.getElementById(target).classList.add('active');
+});
+});
+
+// Skill bars animation when section is active
+const skillLevels = document.querySelectorAll('.skill-level');
+function animateSkills() {
+  const resume = document.getElementById('resume');
+  if(resume.classList.contains('active')){
+    skillLevels.forEach(skill=>{
+      skill.style.width = skill.dataset.skill + '%';
+    });
+  } else {
+    skillLevels.forEach(skill=>{
+      skill.style.width = '0';
+    });
+  }
+}
+links.forEach(link=>{
+  link.addEventListener('click', animateSkills);
+});
+window.addEventListener('load', animateSkills);
+</script>
+
+</body>
+</html>
